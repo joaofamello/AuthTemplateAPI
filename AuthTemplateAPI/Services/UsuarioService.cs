@@ -33,7 +33,7 @@ public class UsuarioService
 
     public async Task<string> Login(LoginUsuarioDto dto)
     {
-        var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
+        var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
 
         if (!result.Succeeded)
             throw new ApplicationException("Usuário não autenticado ou credenciais inválidas.");
