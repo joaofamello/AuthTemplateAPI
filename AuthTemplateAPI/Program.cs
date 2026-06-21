@@ -1,20 +1,32 @@
 using System.Text;
 using AuthTemplateAPI.Data;
+using AuthTemplateAPI.Models;
+using AuthTemplateAPI.Services;
 using AuthTemplateAPI.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ------------------------ Configuração do Banco de Dados -----------------------
+// Configuração do Banco de Dados
 
 var connectionString = builder.Configuration["ConnectionStrings:UserConnection"];
 
 builder.Services.AddDbContext<UsuarioDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// ----------------------------- Configuração do JWT -----------------------------
+// Configuração do Identity
+builder.Services.AddIdentity<Usuario, IdentityRole>()
+    .AddEntityFrameworkStores<UsuarioDbContext>()
+    .AddDefaultTokenProviders();
+
+// Injeção de Dependência dos seus serviços
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<UsuarioService>();
+
+// Configuração do JWT
 
 // 1. Mapeia a seção do appsettings.json para a classe JwtSettings
 var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
