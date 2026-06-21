@@ -1,8 +1,6 @@
 using AuthTemplateAPI.Data.DTOs;
 using AuthTemplateAPI.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AuthTemplateAPI.Services;
 
@@ -38,10 +36,7 @@ public class UsuarioService
         if (!result.Succeeded)
             throw new ApplicationException("Usuário não autenticado ou credenciais inválidas.");
 
-        var usuario = _signInManager
-            .UserManager
-            .Users
-            .FirstOrDefault(u => u.NormalizedUserName == dto.Username.ToUpper());
+        var usuario = await _userManager.FindByNameAsync(dto.Username);
 
         if (usuario is null)
             throw new ApplicationException("Falha interna ao carregar os dados do utilizador.");
