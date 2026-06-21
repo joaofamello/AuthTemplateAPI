@@ -4,5 +4,5 @@ namespace AuthTemplateAPI.Models;
 
 public class Usuario : IdentityUser
 {
-    
+    public Usuario() : base () {}
 }
