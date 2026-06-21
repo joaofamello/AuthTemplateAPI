@@ -19,7 +19,7 @@ public class UsuarioController : ControllerBase
     public async Task<IActionResult> CadastrarUsuario(CreateUsuarioDto dto)
     {
         await _service.Cadastrar(dto);
-        return Ok("Usuário cadastrado!");
+        return Created();
     } 
     
     [HttpPost("login")]
