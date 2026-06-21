@@ -1,9 +1,18 @@
 using System.Text;
+using AuthTemplateAPI.Data;
 using AuthTemplateAPI.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ------------------------ Configuração do Banco de Dados -----------------------
+
+var connectionString = builder.Configuration["ConnectionStrings:UserConnection"];
+
+builder.Services.AddDbContext<UsuarioDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 // ----------------------------- Configuração do JWT -----------------------------
 
