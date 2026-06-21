@@ -1,5 +1,6 @@
 using System.Text;
 using AuthTemplateAPI.Data;
+using AuthTemplateAPI.Middlewares;
 using AuthTemplateAPI.Models;
 using AuthTemplateAPI.Services;
 using AuthTemplateAPI.Settings;
@@ -11,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuração do Banco de Dados
-
 var connectionString = builder.Configuration["ConnectionStrings:UserConnection"];
 
 builder.Services.AddDbContext<UsuarioDbContext>(options =>
@@ -27,7 +27,6 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<UsuarioService>();
 
 // Configuração do JWT
-
 // 1. Mapeia a seção do appsettings.json para a classe JwtSettings
 var jwtSettingsSection = builder.Configuration.GetSection("JwtSettings");
 builder.Services.Configure<JwtSettings>(jwtSettingsSection);
@@ -58,7 +57,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// ---------------------------------------------------------------------------
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

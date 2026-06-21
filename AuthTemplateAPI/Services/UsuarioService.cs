@@ -8,9 +8,9 @@ namespace AuthTemplateAPI.Services;
 
 public class UsuarioService
 {
-    private UserManager<Usuario> _userManager;
-    private SignInManager<Usuario> _signInManager;
-    private TokenService _tokenService;
+    private readonly UserManager<Usuario> _userManager;
+    private readonly SignInManager<Usuario> _signInManager;
+    private readonly TokenService _tokenService;
 
     public UsuarioService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, TokenService tokenService)
     {
