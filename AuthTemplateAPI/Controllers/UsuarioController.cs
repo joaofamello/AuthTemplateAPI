@@ -1,5 +1,6 @@
 using AuthTemplateAPI.Data.DTOs;
 using AuthTemplateAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthTemplateAPI.Controllers;
@@ -27,5 +28,15 @@ public class UsuarioController : ControllerBase
     {
         var token = await _service.Login(dto);
         return Ok(token);
+    }
+
+    [HttpGet("me")]
+    [Authorize]
+    public IActionResult Me()
+    {
+        var id = User.FindFirst("id")?.Value;
+        var username = User.FindFirst("username")?.Value;
+
+        return Ok(new { id, username });
     }
 }
