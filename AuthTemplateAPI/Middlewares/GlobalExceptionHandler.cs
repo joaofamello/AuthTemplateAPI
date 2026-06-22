@@ -23,7 +23,13 @@ public class GlobalExceptionHandler : IExceptionHandler
             Detail = "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde."
         };
 
-        if (exception is ApplicationException appException)
+        if (exception is UnauthorizedAccessException)
+        {
+            problemDetails.Status = StatusCodes.Status401Unauthorized;
+            problemDetails.Title = "Falha na autenticação";
+            problemDetails.Detail = exception.Message;
+        }
+        else if (exception is ApplicationException appException)
         {
             problemDetails.Status = StatusCodes.Status400BadRequest;
             problemDetails.Title = "Erro de Validação";

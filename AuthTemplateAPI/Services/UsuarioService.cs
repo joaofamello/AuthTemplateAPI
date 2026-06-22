@@ -34,7 +34,7 @@ public class UsuarioService
         var result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, true);
 
         if (!result.Succeeded)
-            throw new ApplicationException("Usuário não autenticado ou credenciais inválidas.");
+            throw new UnauthorizedAccessException("Usuário não autenticado ou credenciais inválidas.");
 
         var usuario = await _userManager.FindByNameAsync(dto.Username);
 
