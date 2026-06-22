@@ -19,7 +19,7 @@ public class UsuarioService
 
     public async Task Cadastrar(CreateUsuarioDto dto)
     {
-        Usuario usuario = dto;
+        var usuario = dto.ToUsuario();
         var result = await _userManager.CreateAsync(usuario, dto.Password);
 
         if (!result.Succeeded)

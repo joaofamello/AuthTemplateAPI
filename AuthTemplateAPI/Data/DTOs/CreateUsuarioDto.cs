@@ -8,12 +8,12 @@ public record CreateUsuarioDto
     [Required] public string Username { get; init; }
     [Required] [DataType(DataType.Password)] public string Password { get; init; }
     [Required] [Compare("Password")] public string RePassword { get; init; }
-    
-    public static implicit operator Usuario(CreateUsuarioDto dto)
+
+    public Usuario ToUsuario()
     {
-        return new Usuario()
+        return new Usuario
         {
-            UserName = dto.Username
+            UserName = Username
         };
     }
 };
