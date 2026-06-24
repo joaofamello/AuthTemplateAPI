@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="JwtAuthTemplate.Tests\JwtAuthTemplate.Tests.csproj" />
+  <Project Path="JwtAuthTemplate\JwtAuthTemplate.csproj" />
+</Solution>

@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="AuthTemplateAPI.Tests/AuthTemplateAPI.Tests.csproj" />
-  <Project Path="AuthTemplateAPI/AuthTemplateAPI.csproj" />
-</Solution>

@@ -13,7 +13,7 @@ public class TokenServiceTests
         var settings = new JwtSettings
         {
             SecretKey = "ChaveDeTesteComPeloMenos32Caracteres!",
-            Issuer = "AuthTemplateAPI.Tests",
+            Issuer = "JwtAuthTemplate.Tests",
             Audience = "ClienteDeTeste",
             ExpirationMinutes = 60
         };
@@ -33,6 +33,6 @@ public class TokenServiceTests
         
         Assert.Equal("teste", jwt.Claims.First(c => c.Type == "username").Value);
         Assert.Equal("abc-123", jwt.Claims.First(c => c.Type == "id").Value);
-        Assert.Equal("AuthTemplateAPI.Tests", jwt.Issuer);
+        Assert.Equal("JwtAuthTemplate.Tests", jwt.Issuer);
     }
 }

@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AllowMissingPrunePackageData>true</AllowMissingPrunePackageData>
       <UserSecretsId>0b9f321e-aa87-4518-a98f-bd94a2fd1a3b</UserSecretsId>
+      <RootNamespace>AuthTemplateAPI</RootNamespace>
   </PropertyGroup>
 
     <ItemGroup>

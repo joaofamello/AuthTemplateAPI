@@ -25,7 +25,7 @@ namespace AuthTemplateAPI.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AuthTemplateAPI.Models.Usuario", b =>
+            modelBuilder.Entity("JwtAuthTemplate.Models.Usuario", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -232,7 +232,7 @@ namespace AuthTemplateAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("AuthTemplateAPI.Models.Usuario", null)
+                    b.HasOne("JwtAuthTemplate.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -241,7 +241,7 @@ namespace AuthTemplateAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("AuthTemplateAPI.Models.Usuario", null)
+                    b.HasOne("JwtAuthTemplate.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,7 +256,7 @@ namespace AuthTemplateAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AuthTemplateAPI.Models.Usuario", null)
+                    b.HasOne("JwtAuthTemplate.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -265,7 +265,7 @@ namespace AuthTemplateAPI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("AuthTemplateAPI.Models.Usuario", null)
+                    b.HasOne("JwtAuthTemplate.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
